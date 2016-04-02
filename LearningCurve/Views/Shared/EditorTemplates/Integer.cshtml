@@ -1,0 +1,7 @@
+﻿@model int?
+
+@{
+    var data = ViewData.ModelMetadata.AdditionalValues;
+}
+
+@Html.TextBoxFor(m => m, new { @style = "color:blue", data_test = data["Test"].ToString()})

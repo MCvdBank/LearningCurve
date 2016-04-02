@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningCurve", "LearningCurve\LearningCurve.csproj", "{57C460EB-7658-4654-8EE9-DF2D560D1F24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningCurve.Tests", "LearningCurve.Tests\LearningCurve.Tests.csproj", "{759A0D07-1529-4417-B2F4-9C8A8E0C4D3B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{57C460EB-7658-4654-8EE9-DF2D560D1F24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57C460EB-7658-4654-8EE9-DF2D560D1F24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57C460EB-7658-4654-8EE9-DF2D560D1F24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57C460EB-7658-4654-8EE9-DF2D560D1F24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{759A0D07-1529-4417-B2F4-9C8A8E0C4D3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{759A0D07-1529-4417-B2F4-9C8A8E0C4D3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{759A0D07-1529-4417-B2F4-9C8A8E0C4D3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{759A0D07-1529-4417-B2F4-9C8A8E0C4D3B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
