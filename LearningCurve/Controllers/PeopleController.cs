@@ -18,6 +18,9 @@ namespace LearningCurve.Controllers
         // GET: People
         public ActionResult Index()
         {
+            // Create database first (Note: Ensure the database does NOT exist prior to executing web app for the first time)
+            db.Database.CreateIfNotExists();
+
             return View(db.People.ToList());
         }
 

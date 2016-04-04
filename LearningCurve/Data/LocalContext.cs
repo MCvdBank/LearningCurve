@@ -11,8 +11,11 @@ namespace LearningCurve.Data
 {
     public class LocalContext : DbContext
     {
+        // Database connection strings, pass one to LocalContext constructor to select
+        private static string DefaultConnectionString = "DefaultConnection";
+        private static string MySQLConnectionString = "MySQLConnection";
 
-        public LocalContext() : base("DefaultConnection")
+        public LocalContext() : base(MySQLConnectionString)     // Set correct connection string here
         {
         }
 

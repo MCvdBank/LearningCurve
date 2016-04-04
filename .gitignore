@@ -29,3 +29,7 @@ _ReSharper*/
 !**/packages/build/
 # Uncomment if necessary however generally it will be regenerated when needed
 #!**/packages/repositories.config
+LearningCurve/App_Data/DefaultConnection.mdf
+LearningCurve/App_Data/DefaultConnection_log.ldf
+LearningCurve/App_Data/LocalDatabase.mdf
+LearningCurve/App_Data/LocalDatabase_log.ldf
