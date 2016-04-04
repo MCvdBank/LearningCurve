@@ -12,11 +12,5 @@ namespace LearningCurve.Models
     {
         public int ID { get; set; }
         public string Name { get; set; }
-
-        [UIHint("Integer")]
-        [Required(ErrorMessage = "{0} IS REQUIRED!")]
-        [DisplayName("'n Nommer")]
-        [AdditionalMetadata("Test", 5)]
-        public int Test { get; set; }
     }
 }
