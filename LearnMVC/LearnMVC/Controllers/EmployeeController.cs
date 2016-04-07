@@ -8,37 +8,15 @@ using LearnMVC.ViewModels;
 
 namespace LearnMVC.Controllers
 {
-    public class TestController : Controller
+    public class EmployeeController : Controller
     {
         public string GetString()
         {
             return "Hello MVC";
         }
 
-        public ActionResult GetView()
+        public ActionResult Index()
         {
-            /// Use ViewModel
-            /*
-            Employee emp = new Employee();
-            emp.FirstName = "MC";
-            emp.LastName = "van der Bank";
-            emp.Salary = 20000;
-
-            EmployeeViewModel vmEmp = new EmployeeViewModel();
-            vmEmp.EmployeeName = emp.FirstName + " " + emp.LastName;
-            vmEmp.Salary = emp.Salary.ToString("C");
-            if (emp.Salary > 15000)
-            {
-                vmEmp.SalaryColor = "green";
-            }
-            else
-            {
-                vmEmp.SalaryColor = "yellow";
-            }
-            
-            return View("MyView", vmEmp);
-            */
-
             /// User BusinessLayer
             EmployeeListViewModel employeeListViewModel = new EmployeeListViewModel();
             EmployeeBusinessLayer empBal = new EmployeeBusinessLayer();
@@ -49,7 +27,7 @@ namespace LearnMVC.Controllers
             {
                 EmployeeViewModel empViewModel = new EmployeeViewModel();
                 empViewModel.EmployeeName = emp.FirstName + " " + emp.LastName;
-                empViewModel.Salary = emp.Salary.ToString("C");
+                empViewModel.Salary = emp.Salary.ToString();
                 if (emp.Salary > 15000)
                 {
                     empViewModel.SalaryColor = "green";
@@ -61,11 +39,35 @@ namespace LearnMVC.Controllers
                 empViewModels.Add(empViewModel);
             }
             employeeListViewModel.Employees = empViewModels;
-            employeeListViewModel.UserName = "@dmin_Dud3";
 
-            return View("MyView", employeeListViewModel);
+            return View("Index", employeeListViewModel);
         }
 
+        public ActionResult AddNew()
+        {
+            return View("CreateEmployee");
+        }
 
+        public ActionResult SaveEmployee(Employee e, string BtnSubmit)
+        {
+            switch (BtnSubmit)
+            {
+                case "Save Employee":
+                    if (ModelState.IsValid)
+                    {
+                        EmployeeBusinessLayer empBal = new EmployeeBusinessLayer();
+                        empBal.SaveEmployee(e);
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        return View("CreateEmployee");
+                    }
+                    break;
+                case "Cancel":
+                    return RedirectToAction("Index");
+            }
+            return new EmptyResult();
+        }
     }
 }

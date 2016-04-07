@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using LearnMVC.DataAccessLayer;
 
 namespace LearnMVC.Models
 {
@@ -9,21 +10,19 @@ namespace LearnMVC.Models
     {
         public List<Employee> GetEmployees()
         {
-            List<Employee> employees = new List<Employee>();
+            SalesERPDAL salesDal = new SalesERPDAL();
 
-            Employee emp = new Employee();
-            emp.FirstName = "MC";
-            emp.LastName = "van der Bank";
-            emp.Salary = 10000;
-            employees.Add(emp);
+            salesDal.Database.CreateIfNotExists();
 
-            Employee emp1 = new Employee();
-            emp1.FirstName = "RM";
-            emp1.LastName = "Lombaard";
-            emp1.Salary = 20000;
-            employees.Add(emp1);
+            return salesDal.Employees.ToList();
+        }
 
-            return employees;
+        public Employee SaveEmployee(Employee e)
+        {
+            SalesERPDAL salesDal = new SalesERPDAL();
+            salesDal.Employees.Add(e);
+            salesDal.SaveChanges();
+            return e;
         }
     }
 }
