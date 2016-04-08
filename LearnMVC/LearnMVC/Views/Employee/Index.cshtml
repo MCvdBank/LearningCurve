@@ -14,29 +14,39 @@
     <title>MyView</title>
 </head>
 <body>
+
+<div style="text-align: right">
+     Hello, @Model.UserName
+    <br/>
+    @Html.ActionLink("Logout", "Logout", "Authentication")
+</div>
+
+<hr/>
+
+<h1>Employees</h1>
+
+
+@Html.ActionLink("Add new", "AddNew", "Employee")
+<br/>
+
 <div>
-    <h1>Employees</h1>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Salary</th>
+        </tr>
 
-    <div>
-        <table>
+        @foreach (EmployeeViewModel item in Model.Employees)
+        {
             <tr>
-                <th>Name</th>
-                <th>Salary</th>
+                <td>@item.EmployeeName</td>
+                <td style="background-color: @item.SalaryColor">@item.Salary</td>
             </tr>
+        }
 
-            @foreach (EmployeeViewModel item in Model.Employees)
-            {
-                <tr>
-                    <td>@item.EmployeeName</td>
-                    <td style="background-color: @item.SalaryColor">@item.Salary</td>
-                </tr>
-            }
+    </table>
 
-        </table>
-
-        @Html.ActionLink("Add new", "AddNew", "Employee");
-
-    </div>
+</div>
 </div>
 </body>
 </html>

@@ -19,17 +19,30 @@ namespace LearnMVC.Controllers
         [HttpPost]
         public ActionResult DoLogin(UserDetails u)
         {
-            EmployeeBusinessLayer bal = new EmployeeBusinessLayer();
-            if (bal.IsValidUser(u))
+            if (ModelState.IsValid)
             {
-                FormsAuthentication.SetAuthCookie(u.UserName, false);
-                return RedirectToAction("Index", "Employee");
+                EmployeeBusinessLayer bal = new EmployeeBusinessLayer();
+                if (bal.IsValidUser(u))
+                {
+                    FormsAuthentication.SetAuthCookie(u.UserName, false);
+                    return RedirectToAction("Index", "Employee");
+                }
+                else
+                {
+                    ModelState.AddModelError("CredentialError", "Invalid Username or Password");
+                    return View("Login");
+                }
             }
             else
             {
-                ModelState.AddModelError("CredentialError", "Invalid Username or Password");
                 return View("Login");
             }
+        }
+
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login");
         }
     }
 }
