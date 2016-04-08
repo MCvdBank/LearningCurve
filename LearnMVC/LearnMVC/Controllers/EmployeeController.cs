@@ -11,6 +11,7 @@ namespace LearnMVC.Controllers
 {
     public class EmployeeController : Controller
     {
+        [Route("Employee/List")]
         [HeaderFooterFilter]
         [Authorize]
         public ActionResult Index()
