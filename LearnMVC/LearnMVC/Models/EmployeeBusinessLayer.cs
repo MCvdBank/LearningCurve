@@ -25,15 +25,19 @@ namespace LearnMVC.Models
             return e;
         }
 
-        public bool IsValidUser(UserDetails u)
+        public UserStatus GetUserValidity(UserDetails u)
         {
             if (u.UserName == "Admin" && u.Password == "Admin")
             {
-                return true;
+                return UserStatus.AuthenticatedAdmin;
+            }
+            else if (u.UserName == "MC" && u.Password == "MC")
+            {
+                return UserStatus.AuthentucatedUser;
             }
             else
             {
-                return false;
+                return UserStatus.NonAuthenticatedUser;
             }
         }
     }

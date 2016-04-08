@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using LearnMVC.Filters;
 using LearnMVC.Models;
 using LearnMVC.ViewModels;
 
@@ -10,11 +11,11 @@ namespace LearnMVC.Controllers
 {
     public class EmployeeController : Controller
     {
+        [HeaderFooterFilter]
         [Authorize]
         public ActionResult Index()
         {
             EmployeeListViewModel employeeListViewModel = new EmployeeListViewModel();
-            employeeListViewModel.UserName = User.Identity.Name;
             EmployeeBusinessLayer empBal = new EmployeeBusinessLayer();
             List<Employee> employees = empBal.GetEmployees();
             List<EmployeeViewModel> empViewModels = new List<EmployeeViewModel>();
@@ -39,11 +40,18 @@ namespace LearnMVC.Controllers
             return View("Index", employeeListViewModel);
         }
 
+        [AdminFilter]
+        [HeaderFooterFilter]
         public ActionResult AddNew()
         {
-            return View("CreateEmployee", new CreateEmployeeViewModel());
+            CreateEmployeeViewModel employeeListViewModel = new CreateEmployeeViewModel();
+            employeeListViewModel.FooterData = new FooterViewModel();
+            return View("CreateEmployee", employeeListViewModel);
         }
 
+        [AdminFilter]
+        [HeaderFooterFilter]
+        [ValidateAntiForgeryToken]
         public ActionResult SaveEmployee(Employee e, string BtnSubmit)
         {
             switch (BtnSubmit)
@@ -75,6 +83,19 @@ namespace LearnMVC.Controllers
                     return RedirectToAction("Index");
             }
             return new EmptyResult();
+        }
+
+        [ChildActionOnly]
+        public ActionResult GetAddNewLink()
+        {
+            if (Convert.ToBoolean(Session["IsAdmin"]))
+            {
+                return PartialView("AddNewLink");
+            }
+            else
+            {
+                return new EmptyResult();
+            }
         }
     }
 }
